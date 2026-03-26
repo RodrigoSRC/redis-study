@@ -48,4 +48,21 @@ export class PostsService {
 
     return post;
   }
+
+  async update(id: number, dto: UpdatePostDto) {
+    const post = await this.prisma.post.update({
+      where: { id },
+      data: dto,
+    });
+
+    await this.redis.del(cacheKey(id));
+    console.log(`[cache invalidated] post:${id}`);
+
+    return post;
+  }
+
+  async remove(id: number) {
+    await this.prisma.post.delete({ where: { id } });
+    await this.redis.del(cacheKey(id));
+  }
 }
