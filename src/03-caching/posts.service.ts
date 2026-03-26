@@ -56,7 +56,7 @@ export class PostsService {
     });
 
     await this.redis.del(cacheKey(id));
-    console.log(`[cache invalidated] post:${id}`);
+    console.log(`[CACHE INVALIDATED] post:${id}`);
 
     return post;
   }
