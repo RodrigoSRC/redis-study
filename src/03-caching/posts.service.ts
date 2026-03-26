@@ -65,4 +65,12 @@ export class PostsService {
     await this.prisma.post.delete({ where: { id } });
     await this.redis.del(cacheKey(id));
   }
+
+  async findAll() {
+    return this.prisma.post.findMany({ orderBy: { createdAt: 'desc' } });
+  }
+
+  async create(dto: CreatePostDto) {
+    return this.prisma.post.create({ data: dto });
+  }
 }
