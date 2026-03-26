@@ -8,12 +8,12 @@ function cacheKey(id: number): string {
   return `cache:post:${id}`;
 }
 
-export interface CreatePostDto {
+export class CreatePostDto {
   title: string;
   content: string;
 }
 
-export interface UpdatePostDto {
+export class UpdatePostDto {
   title?: string;
   content?: string;
 }
