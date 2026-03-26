@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import type { Post } from '../../generated/prisma/client.js';
 import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 
@@ -32,7 +33,7 @@ export class PostsService {
     const cached = await this.redis.get(key);
     if (cached) {
       console.log(`[CACHE HIT] post:${id}`);
-      return JSON.parse(cached); // Redis guarda string → converte de volta pra objeto
+      return JSON.parse(cached) as Post;
     }
 
     // 2. MISS: busca no Postgres
