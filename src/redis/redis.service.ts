@@ -32,6 +32,18 @@ export class RedisService implements OnModuleDestroy {
     await this.client.del(key);
   }
 
+  async incr(key: string): Promise<number> {
+    return this.client.incr(key);
+  }
+
+  async expire(key: string, ttlSeconds: number): Promise<number> {
+    return this.client.expire(key, ttlSeconds);
+  }
+
+  async ttl(key: string): Promise<number> {
+    return this.client.ttl(key);
+  }
+
   async publish(channel: string, message: string): Promise<number> {
     return this.client.publish(channel, message);
     // retorna o número de subscribers que receberam
