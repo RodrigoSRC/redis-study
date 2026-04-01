@@ -7,6 +7,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { SessionsModule } from './04-sessions/sessions.module';
 import { PubSubModule } from './05-pub-sub/pubsub.module';
 import { QueuesModule } from './06-queues/queues.module';
+import { RateLimitingModule } from './07-rate-limiting/rate-limiting.module';
 @Module({
   imports: [
     RedisModule,
@@ -15,6 +16,7 @@ import { QueuesModule } from './06-queues/queues.module';
     SessionsModule,
     PubSubModule,
     QueuesModule,
+    RateLimitingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
