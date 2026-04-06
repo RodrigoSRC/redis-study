@@ -6,12 +6,12 @@ import {
 } from '@nestjs/common';
 import { Worker, Job } from 'bullmq';
 
-type ReportJobData = { userId: number; fitlers: Record<string, unknown> };
+type ReportJobData = { userId: number; filters: Record<string, unknown> };
 
 @Injectable()
 export class ReportProcessor implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(ReportProcessor.name);
-  private worker: Worker<ReportJobData>;
+  private worker!: Worker<ReportJobData>;
 
   onModuleInit() {
     this.worker = new Worker<ReportJobData>(
